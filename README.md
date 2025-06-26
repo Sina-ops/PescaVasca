@@ -247,14 +247,17 @@ ORDER BY anio DESC LIMIT 5;
 claramente:
 
 El atún rojo es el más rentable por:
-Alto valor por kg en mercado (precios históricos superiores a 20-50€/kg en subastas japonesas).
+Alto valor por tonelada en mercado .
 Aunque sus volúmenes son menores, su rentabilidad unitaria compensa.
-La anchoa sería segunda, por:
-Volúmenes altos y demanda estable para conservas (precio aproximado: 3-8€/kg).
+
+La anchoa seríaes la menos rentable de las tres:
+Caída drástica de capturas.
+Precios moderados, pero insuficientes para compensar el declive.
+
+La merluza es segunda, por:
+Volúmenes altos y demanda estable para conservas.
 Mayor estabilidad que el atún.
-La merluza es la menos rentable de las tres:
-Caída drástica de capturas (-88% desde 2003).
-Precios moderados (5-12€/kg fresco), pero insuficientes para compensar el declive.
+
 
 ## 3.2 Correlaciones entre variables
 Existe correlación entre cantidad y valor por especie
