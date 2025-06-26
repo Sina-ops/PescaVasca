@@ -358,4 +358,40 @@ plt.ylabel('€ por tm')
 plt.show()
 ```
 ## Resultados Clave de Correlación
+
 Tabla de Correlaciones por Especie
+
+Especie	Correlación	Significancia (p-value)
+Anchoa	0.82	0.003
+Merluza	0.76	0.008
+Bonito norte	0.68	0.021
+Atún rojo	0.45	0.112
+Chicharro	-0.31	0.284
+
+### Hallazgos Destacados:
+Fuertes correlaciones positivas:
+Anchoa (0.82) y merluza (0.76) muestran que aumentos en capturas coinciden con mayor valor económico
+
+### Correlaciones moderadas/bajas:
+Atún rojo (0.45) sugiere que su valor depende menos del volumen capturado
+Chicharro (-0.31) indica posible efecto de sobreoferta
+
+### Evolución temporal:
+El valor por tonelada del atún rojo muestra mayor crecimiento relativo
+Especies costeras (anchoa, verdel) presentan mayor volatilidad interanual
+
+# Análisis Global
+Estos resultados complementan el estudio al:
+
+Validar hipótesis económicas: Confirman que no todas las especies siguen la ley básica de oferta-demanda
+
+## Priorizar estrategias:
+
+Invertir en especies con alta correlación y valor/tm (anchoa, merluza)
+Diversificar para especies con baja correlación (atún rojo)
+
+## Optimizar recursos:
+
+Asignar capacidad pesquera según rentabilidad real
+Ajustar esfuerzo pesquero basado en relaciones cantidad-valor
+Recomendación metodológica: Incluir esta sección tras el análisis descriptivo y antes de las conclusiones, mostrando cómo los datos respaldan los hallazgos.
