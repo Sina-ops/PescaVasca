@@ -47,11 +47,11 @@ from sqlalchemy import create_engine
 
 # Configuración de la base de datos
 DB_CONFIG = {
-    'host': 'localhost',
-    'database': 'agribask',
-    'user': 'postgres',
-    'password': 'Floridablanca134',
-    'port': '5432'
+'host': 'localhost',
+'database': 'agribask',
+'user': 'postgres',
+'password': 'Floridablanca134',
+'port': '5432'
 }
 
 CSV_PATH = r"C:\Users\database\Desktop\pescavasca\Buques_total.csv"
@@ -60,7 +60,7 @@ def leer_csv_correctamente(ruta_archivo):
     """Lee el CSV saltando las filas de metadatos"""
     # Primero detectamos cuántas líneas hay que saltar
     with open(ruta_archivo, 'r', encoding='latin1') as f:
-        lineas = f.readlines()
+ lineas = f.readlines()
     
     # Buscamos la línea que contiene los encabezados reales
     for i, linea in enumerate(lineas):
@@ -244,7 +244,17 @@ SELECT anio, anchoa_valor_tm, merluza_valor_tm, atun_rojo_valor_tm
 FROM valor_por_tonelada
 ORDER BY anio DESC LIMIT 5;
 ```
------- claramente 
+claramente:
+
+El atún rojo es el más rentable por:
+Alto valor por kg en mercado (precios históricos superiores a 20-50€/kg en subastas japonesas).
+Aunque sus volúmenes son menores, su rentabilidad unitaria compensa.
+La anchoa sería segunda, por:
+Volúmenes altos y demanda estable para conservas (precio aproximado: 3-8€/kg).
+Mayor estabilidad que el atún.
+La merluza es la menos rentable de las tres:
+Caída drástica de capturas (-88% desde 2003).
+Precios moderados (5-12€/kg fresco), pero insuficientes para compensar el declive.
 
 ## 3.2 Correlaciones entre variables
 Existe correlación entre cantidad y valor por especie
@@ -255,8 +265,8 @@ especies = ['anchoa', 'atun_rojo', 'merluza', 'bonito_norte']
 corr_results = []
 
 for esp in especies:
-    corr = df[[f'cantidad_{esp}', f'valor_{esp}']].corr().iloc[0,1]
-    corr_results.append({'Especie': esp, 'Correlación': corr})
+corr = df[[f'cantidad_{esp}', f'valor_{esp}']].corr().iloc[0,1]
+corr_results.append({'Especie': esp, 'Correlación': corr})
 
 pd.DataFrame(corr_results).sort_values('Correlación', ascending=False)
 ```
@@ -277,9 +287,12 @@ UNION ALL
 sql
 CREATE OR REPLACE VIEW personal_por_buque AS
 SELECT 
-    f.anio,
-    ROUND((f.personal::numeric / NULLIF(f.num_buques, 0)), 2) AS personas_por_buque,
-    f.tipo_pesca
+f.anio,
+ROUND((f.personal::numeric / NULLIF(f.num_buques, 0)), 2) AS personas_por_buque,
+
+
+
+f.tipo_pesca
 FROM flota_pesquera f;
 ```
 
@@ -288,7 +301,8 @@ FROM flota_pesquera f;
 
 ```SQL
 SELECT anio, subsector,
-       ROUND(resultado_explotacion::numeric / NULLIF(ventas_netas, 0), 3) AS margen_explotacion
+
+ROUND(resultado_explotacion::numeric / NULLIF(ventas_netas, 0), 3) AS margen_explotacion
 FROM rentabilidad
 ORDER BY anio DESC, margen_explotacion DESC;
 ```
@@ -344,7 +358,7 @@ plt.ylabel('Valor (miles €)')
 
 # Cálculo estadístico
 slope, intercept, r_value, p_value, std_err = stats.linregress(
-    anchoa['cantidad_tm'], anchoa['valor_eur'])
+anchoa['cantidad_tm'], anchoa['valor_eur'])
 print(f"\nEstadísticos para anchoa:")
 print(f"Coeficiente correlación (r): {r_value:.3f}")
 print(f"Valor p: {p_value:.4f}")
@@ -353,7 +367,7 @@ print(f"Ecuación: y = {slope:.2f}x + {intercept:.2f}")
 # 4. Evolución temporal del valor por tonelada
 valor_tm = pd.read_sql("SELECT * FROM valor_por_tonelada", conn)
 valor_tm.plot(x='anio', y=['anchoa_valor_tm', 'atun_rojo_valor_tm', 'merluza_valor_tm'],
-              figsize=(12, 6), title='Evolución del valor por tonelada métrica')
+figsize=(12, 6), title='Evolución del valor por tonelada métrica')
 plt.ylabel('€ por tm')
 plt.show()
 ```
